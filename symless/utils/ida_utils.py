@@ -328,6 +328,8 @@ def get_local_type(name: str) -> Optional[idaapi.tinfo_t]:
 
 # tinfo to struc sid, by name correspondance
 def struc_from_tinfo(tinfo: idaapi.tinfo_t) -> int:
+    if not tinfo.is_correct():
+        return idaapi.BADADDR
     return idaapi.get_struc_id(tinfo.get_type_name())
 
 
